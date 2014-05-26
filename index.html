@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+	<head>
+ 		<title>jQuary Mobile </title>
+         <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+ 		
+ 		<link rel="stylesheet" href="themes/mytheme.css" />
+        <link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile.structure-1.4.2.min.css" />
+        <link rel="stylesheet" href="my.css">
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+
+
+        <script type="text/javascript" src="phonegap.js"></script> 
+      <script type="text/javascript" charset="utf-8">
+
+var pictureSource; // picture source
+var destinationType; // sets the format of returned value
+
+// Wait for device API libraries to load
+//
+document.addEventListener("deviceready",onDeviceReady,false);
+
+// device APIs are available
+//
+function onDeviceReady() {
+pictureSource=navigator.camera.PictureSourceType;
+destinationType=navigator.camera.DestinationType;
+}navigator
+
+// Called when a photo is successfully retrieved
+//
+function onPhotoDataSuccess(imageData) {
+// Uncomment to view the base64-encoded image data
+// console.log(imageData);
+
+// Get image handle
+//
+var sImage = document.getElementById('Image');
+
+// Unhide image elements
+//
+sImage.style.display = 'block';
+
+// Show the captured photo
+// The inline CSS rules are used to resize the image
+//
+sImage.src = "data:image/jpeg;base64," + imageData;
+}
+
+// Called when a photo is successfully retrieved
+//
+function onPhotoURISuccess(imageURI) {
+// Uncomment to view the image file URI
+// console.log(imageURI);
+
+// Get image handle
+//
+var largeImage = document.getElementById('largeImage');
+
+// Unhide image elements
+//
+largeImage.style.display = 'block';
+
+// Show the captured photo
+// The inline CSS rules are used to resize the image
+//
+largeImage.src = imageURI;
+}
+
+// A button will call this function
+//
+function Photo() {
+// Take picture using device camera and retrieve image as base64-encoded string
+navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50,
+destinationType: destinationType.DATA_URL });
+}
+
+function onFail(message) {
+alert('Failed because: ' + message);
+}
+
+</script>
+
+
+	</head>
+
+<body>
+
+	<div id="home" data-role="page" >
+
+    	<div id="firstpage" data-role="header" data-backbtn="false">
+    		<p>"Как нарисовать сову за 3 шага?" Сначала нарисуйте круг</p>
+              <!-- navbar -->
+               <div data-role="navbar">
+                    <ul>
+                        <li><a href="#home">Шаг первый</a></li>
+                        <li><a href="#galery">Шаг второй</a></li>
+                        <li><a href="#post">Шаг третий</a></li>
+                        <li><a href="#autor">Авторы</a></li>
+                    </ul>
+                </div>
+   		 </div>
+
+    	<div id="content" data-role="content" >
+    		
+    		<div id="img1">
+    		</div>
+    	</div>
+
+     	<div  data-role="footer" >
+
+            <div data-role="navbar">
+                 <ul>
+                        
+                    <a id="footer1" href="#galery" class="ui-btn ui-icon-arrow-r ui-btn-icon-left" data-transition="fade"> Дальше</a>
+                     <a id="footer2" href="#dialog1" class="ui-btn ui-btn-b " data-transition="fade">Результат</a>
+                </ul>
+            </div>
+        </div>
+     </div>
+    	
+	<div data-role="page" id="galery" >
+
+    	<div  id="firstpage" data-role="header" data-backbtn="false" >
+  			<p> Нарисуйте сову!</p>
+            <div data-role="navbar">
+                    <ul>
+                        <li><a href="#home">Шаг первый</a></li>
+                        <li><a href="#galery">Шаг второй</a></li>
+                        <li><a href="#post">Шаг третий</a></li>
+                        <li><a href="#autor">Авторы</a></li>
+                    </ul>
+                </div>
+    	</div>
+
+   		<div id="content" data-role="content" >
+    		<div id="img2">
+    		</div>
+		</div>
+
+		<div data-role="footer" >
+    		<div data-role="navbar">
+                 <ul>
+                        
+                    <a id="footer1" href="#home" class="ui-btn ui-icon-back ui-btn-icon-left" data-transition="fade">Назад</a>
+            <a id="footer2" href="#dialog1" class="ui-btn ui-btn-b " data-transition="fade">Результат</a>
+                </ul>
+            </div>
+    	</div>
+    </div>
+
+	<div data-role="page" id="post" >
+
+    	<div  id="firstpage" data-role="header" data-backbtn="false">
+   		 	<p> -----------------------------------</p>
+            <div data-role="navbar">
+                    <ul>
+                        <li><a href="#home">Шаг первый</a></li>
+                        <li><a href="#galery">Шаг второй</a></li>
+                        <li><a href="#post">Шаг третий</a></li>
+                        <li><a href="#autor">Авторы</a></li>
+                    </ul>
+                </div>
+   		</div>
+
+   		<div id="content" data-role="content" >
+    		<div id="img3">
+    		</div>
+
+             <button onclick="Photo();">Сфотографируйте ваше лицо на память)</button> 
+
+            <img style="display:none;width:160px;height:160px;" id="Image" src="" />
+            <img style="display:none;" id="largeImage" src="" />
+
+        </div>
+
+
+		<div data-role="footer">
+    	<div data-role="navbar">
+                 <ul>
+                        
+                    <a id="footer1" href="#home" class="ui-btn ui-icon-back ui-btn-icon-left" data-transition="flip" >Сначача</a>
+            <a id="footer2" href="#galery" class="ui-btn ui-icon-back ui-btn-icon-left" data-transition="fade">Назад </a>
+                </ul>
+            </div>
+        </div>
+    
+    </div>
+
+
+<!--диалоговое-->
+
+       <div data-role="page" id="dialog1"  data-dialog="true">
+
+    <div  id="header_dialog" data-role="header"  data-theme="b">
+            <p>Внимание!</p>
+        </div>
+
+        <div id="content_dialog" data-role="content" >
+            <h2 > Вы уверены? </h2>
+            <a href="#post" class="ui-btn" >Да</a>
+            <a href="#home" class="ui-btn">Нет!!!</a>
+        </div>
+
+    </div>
+
+
+    <div data-role="page" id="autor">
+
+       <div  data-role="header" data-backbtn="false" >
+            <div data-role="navbar">
+                    <ul>
+                        <li><a href="#home">Шаг первый</a></li>
+                        <li><a href="#galery">Шаг второй</a></li>
+                        <li><a href="#post">Шаг третий</a></li>
+                    </ul>
+                </div>
+        </div>
+
+        <div id="content_dialog" data-role="content" >
+            <canvas id="myCanvas" ></canvas>
+            <script>
+                var canvas =document.getElementById("myCanvas");
+
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight/2.5;
+                var context = canvas.getContext("2d");
+
+
+  
+                context.beginPath();
+    context.lineWidth = 2;
+    context.strokeStyle = 'black';
+    context.moveTo(10, 10);
+    context.lineTo(10, 100);
+    context.stroke();
+
+    context.beginPath();
+    context.lineWidth = 2;
+    context.strokeStyle = 'black';
+    context.moveTo(10, 10);
+    context.lineTo(50, 10);
+    context.stroke();
+  
+    context.beginPath();
+    context.lineWidth = 2;
+    context.strokeStyle = 'black';
+    context.moveTo(50, 10);
+    context.lineTo(50, 100);
+    context.stroke();
+ 
+    context.beginPath();
+    context.lineWidth = 2;
+    context.strokeStyle = 'black';
+    context.moveTo(1, 100);
+    context.lineTo(59, 100);
+    context.stroke();
+
+    context.beginPath();
+    context.lineWidth = 2;
+    context.strokeStyle = 'black';
+    context.moveTo(1, 100);
+    context.lineTo(1, 110);
+    context.stroke();
+
+    context.beginPath();
+    context.lineWidth = 2;
+    context.strokeStyle = 'black';
+    context.moveTo(59, 100);
+    context.lineTo(59, 110);
+    context.stroke(); 
+
+
+
+    //I
+    context.beginPath();
+    context.lineWidth = 2;
+    context.strokeStyle = 'black';
+    context.moveTo(65, 10);
+    context.lineTo(65, 100);
+    context.stroke();
+
+    context.beginPath();
+    context.lineWidth = 2;
+    context.strokeStyle = 'black';
+    context.moveTo(65, 100);
+    context.lineTo(130, 10);
+    context.stroke();
+
+    context.beginPath();
+    context.lineWidth = 2;
+    context.strokeStyle = 'black';
+    context.moveTo(130, 10);
+    context.lineTo(130, 100);
+    context.stroke();
+
+
+    //M
+    context.beginPath();
+    context.lineWidth = 2;
+    context.strokeStyle = 'black';
+    context.moveTo(134, 10);
+    context.lineTo(134, 100);
+    context.stroke();
+
+    context.beginPath();
+    context.lineWidth = 2;
+    context.strokeStyle = 'black';
+    context.moveTo(134, 10);
+    context.lineTo(164, 80);
+    context.stroke();
+
+    context.beginPath();
+    context.lineWidth = 2;
+    context.strokeStyle = 'black';
+    context.moveTo(164, 80);
+    context.lineTo(194, 10);
+    context.stroke();
+ 
+    context.beginPath();
+    context.lineWidth = 2;
+    context.strokeStyle = 'black';
+    context.moveTo(194, 10);
+    context.lineTo(194, 100);
+    context.stroke();
+
+
+    //A
+    context.beginPath();
+    context.lineWidth = 2;
+    context.strokeStyle = 'black';
+    context.moveTo(198, 100);
+    context.lineTo(223, 10);
+    context.stroke();
+
+    context.beginPath();
+    context.lineWidth = 2;
+    context.strokeStyle = 'black';
+    context.moveTo(223, 10);
+    context.lineTo(248, 100);
+    context.stroke();
+
+    context.beginPath();
+    context.lineWidth = 2;
+    context.strokeStyle = 'black';
+    context.moveTo(211, 50);
+    context.lineTo(235, 50);
+    context.stroke();
+            </script>
+        </div>
+
+        <div id="content_name" data-role="footer">
+
+            <p>Алфуцкий Д.А. ДЦиМ 4-1</p>
+
+         </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,70 @@
+#firstpage p{
+
+	
+	font-size: 1.7em;
+	font-family: Vanilla;
+	margin-left: 10%;
+	
+
+}
+
+#img1{
+	
+	height: 20em;
+	
+	background-image: url(shag1.png);
+	background-position:center;
+	background-size:contain;
+	background-repeat:no-repeat;
+	
+}
+
+
+#img2{
+	
+	height: 20em;
+	
+	background-image: url(shag2.png);
+	background-position:center;
+	background-size:contain;
+	background-repeat:no-repeat;
+
+}
+
+#img3{
+	
+	height: 20em;
+	background-image: url(shag3.png);
+	background-position:center;
+	background-size:contain;
+	background-repeat:no-repeat;
+
+}
+
+
+#content{
+	background-image: url(back.jpg);
+	background-position:center;
+	background-size:cover;
+}
+
+#header_dialog p{
+	font-size: 1em;
+	font-family: Vanilla;
+	margin-left: 40%;
+}
+
+#content_dialog h2{
+	margin-left: 15%;
+}
+
+
+
+#myCanvas{
+	height: 24em;
+	margin-left: 15%;
+}
+
+
+#receipt li, p{
+	font-size: xx-small;
